@@ -10,14 +10,13 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install elan
-        shell: pwsh
-        run: |
-          Invoke-WebRequest -Uri https://raw.githubusercontent.com/leanprover/elan/master/elan-init.ps1 -OutFile elan-init.ps1
-          .\elan-init.ps1 -y
-          "$env:USERPROFILE\.elan\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Set up Lean
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          use-github-cache: false
       - name: Run audit
         shell: pwsh
         run: |
           $env:Path = "$env:USERPROFILE\.elan\bin;$env:Path"
-          powershell -ExecutionPolicy Bypass -File scripts/check-hubble-transport-audit.ps1
+          powershell -ExecutionPolicy Bypass -File scripts/check-hubble-transport-audit.ps1 -SkipLakeUpdate
