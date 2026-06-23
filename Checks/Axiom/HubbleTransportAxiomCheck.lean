@@ -1,0 +1,10 @@
+import HubbleTransport
+
+#print axioms HubbleTransport.hubble_redshift_active_transport_map_typed
+#print axioms HubbleTransport.hubble_redshift_active_recombination_suppressed
+#print axioms HubbleTransport.hubble_redshift_active_zero_correction_lcdm_limit
+#print axioms HubbleTransport.hubble_redshift_active_instantiates_AASC_class
+#print axioms HubbleTransport.hubble_redshift_active_kernel_package
+#print axioms HubbleTransport.hubble_primary_claim_sigma_legitimate
+#print axioms HubbleTransport.hubble_transport_closure_paper_recognized
+#print axioms HubbleTransport.hubble_transport_closure_scope_boundary

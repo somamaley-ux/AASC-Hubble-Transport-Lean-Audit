@@ -1,0 +1,21 @@
+name: audit
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  lean-audit:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri https://raw.githubusercontent.com/leanprover/elan/master/elan-init.ps1 -OutFile elan-init.ps1
+          .\elan-init.ps1 -y
+          "$env:USERPROFILE\.elan\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Run audit
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File scripts/check-hubble-transport-audit.ps1
